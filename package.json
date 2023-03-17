@@ -1,0 +1,37 @@
+{
+    "scripts": {
+        "clone:volar": "git clone https://github.com/volarjs/volar.js.git volar && cd volar && pnpm i && npm run build",
+        "clone:plugins": "git clone https://github.com/volarjs/plugins.git plugins && cd plugins && pnpm i && npm run build",
+        "clone:vue": "git clone https://github.com/vuejs/language-tools.git vue && cd vue && pnpm i && npm run build",
+        "setup:vue": "(npm run clone:volar & npm run clone:plugins & npm run clone:vue) && pnpm i",
+        "watch": "tsc -b tsconfig.build.json -w"
+    },
+    "devDependencies": {
+        "typescript": "latest"
+    },
+    "pnpm": {
+        "overrides": {
+            "@volar/kit": "file:./volar/packages/kit",
+            "@volar/language-core": "file:./volar/packages/language-core",
+            "@volar/language-server": "file:./volar/packages/language-server",
+            "@volar/language-service": "file:./volar/packages/language-service",
+            "@volar/source-map": "file:./volar/packages/source-map",
+            "@volar/typescript": "file:./volar/packages/typescript",
+            "@volar/vscode": "file:./volar/packages/vscode",
+            "@volar-plugins/css": "file:./plugins/packages/css",
+            "@volar-plugins/emmet": "file:./plugins/packages/emmet",
+            "@volar-plugins/eslint": "file:./plugins/packages/eslint",
+            "@volar-plugins/html": "file:./plugins/packages/html",
+            "@volar-plugins/json": "file:./plugins/packages/json",
+            "@volar-plugins/prettier": "file:./plugins/packages/prettier",
+            "@volar-plugins/prettyhtml": "file:./plugins/packages/prettyhtml",
+            "@volar-plugins/pug": "file:./plugins/packages/pug",
+            "@volar-plugins/pug-beautify": "file:./plugins/packages/pug-beautify",
+            "@volar-plugins/sass-formatter": "file:./plugins/packages/sass-formatter",
+            "@volar-plugins/tslint": "file:./plugins/packages/tslint",
+            "@volar-plugins/typescript": "file:./plugins/packages/typescript",
+            "@volar-plugins/typescript-twoslash-queries": "file:./plugins/packages/typescript-twoslash-queries",
+            "@volar-plugins/vetur": "file:./plugins/packages/vetur"
+        }
+    }
+}

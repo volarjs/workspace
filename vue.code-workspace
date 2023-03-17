@@ -1,0 +1,21 @@
+{
+	"folders": [
+		{
+			"path": ".",
+			"name": "[root]"
+		},
+		{
+			"path": "volar"
+		},
+		{
+			"path": "plugins"
+		},
+		{
+			"path": "vue"
+		}
+	],
+	"settings": {
+		"json.format.keepLines": true,
+		"typescript.tsdk": "node_modules/typescript/lib"
+	}
+}

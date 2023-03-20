@@ -8,5 +8,8 @@
 		{
 			"path": "./plugins/tsconfig.build.json"
 		},
+		{
+			"path": "./vue/tsconfig.build.json"
+		}
 	]
 }

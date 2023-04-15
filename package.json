@@ -4,6 +4,7 @@
         "clone:plugins": "git clone https://github.com/volarjs/plugins.git plugins && cd plugins && pnpm i && npm run build",
         "clone:vue": "git clone https://github.com/vuejs/language-tools.git vue && cd vue && pnpm i && npm run build",
         "setup:vue": "(npm run clone:volar & npm run clone:plugins & npm run clone:vue) && pnpm i",
+        "clean": "find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +",
         "watch": "tsc -b tsconfig.build.json -w"
     },
     "devDependencies": {

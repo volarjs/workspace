@@ -5,10 +5,10 @@
 			"name": "[root]"
 		},
 		{
-			"path": "volar"
+			"path": "framework"
 		},
 		{
-			"path": "plugins"
+			"path": "services"
 		},
 		{
 			"path": "vue"

@@ -3,10 +3,10 @@
 	"include": [],
 	"references": [
 		{
-			"path": "./volar/tsconfig.build.json"
+			"path": "./framework/tsconfig.build.json"
 		},
 		{
-			"path": "./plugins/tsconfig.build.json"
+			"path": "./services/tsconfig.build.json"
 		},
 	]
 }

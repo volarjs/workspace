@@ -1,0 +1,7 @@
+{
+	"include": [
+		"framework/packages/*/src/**/*.ts",
+		"services/packages/*/src/**/*.ts",
+		"vue/packages/*/src/**/*.ts",
+	],
+}

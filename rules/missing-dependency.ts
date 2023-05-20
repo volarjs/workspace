@@ -5,6 +5,7 @@ import * as fs from 'fs';
 
 interface ProjectConfig {
 	fields?: string[];
+	typeOnlyFields?: string[];
 	ignore?: string[];
 }
 
@@ -24,6 +25,7 @@ export default (ignores: Record<string, ProjectConfig> = {}): Rule<Provide> => (
 		const packageJson = require(packageJsonPath);
 
 		projectConfig.fields ??= ['dependencies', 'peerDependencies'];
+		projectConfig.typeOnlyFields ??= ['dependencies', 'peerDependencies', 'devDependencies'];
 		projectConfig.ignore ??= [];
 
 		sourceFile.forEachChild(function visit(node) {
@@ -31,16 +33,34 @@ export default (ignores: Record<string, ProjectConfig> = {}): Rule<Provide> => (
 			if (
 				ts.isImportDeclaration(node) &&
 				ts.isStringLiteral(node.moduleSpecifier) &&
-				node.importClause.isTypeOnly === false &&
 				(moduleName = getImportModuleName(node.moduleSpecifier.text)) &&
+				!projectConfig.ignore.includes(moduleName) &&
+				!(node.importClause.isTypeOnly ? projectConfig.typeOnlyFields : projectConfig.fields).some(field => packageJson[field]?.[moduleName])
+			) {
+				report({
+					message: `Missing dependency "${moduleName}" in ${path.relative(process.cwd(), packageJsonPath)} fields: ${(node.importClause.isTypeOnly ? projectConfig.typeOnlyFields : projectConfig.fields).join(', ') || 'none'}`,
+					range: {
+						start: document.positionAt(1 + node.moduleSpecifier.getStart(sourceFile)),
+						end: document.positionAt(1 + node.moduleSpecifier.getStart(sourceFile) + moduleName.length),
+					},
+					severity: 1,
+				});
+			}
+			if (
+				ts.isCallExpression(node) &&
+				ts.isIdentifier(node.expression) &&
+				node.expression.text === 'require' &&
+				node.arguments.length === 1 &&
+				ts.isStringLiteral(node.arguments[0]) &&
+				(moduleName = getImportModuleName(node.arguments[0].text)) &&
 				!projectConfig.ignore.includes(moduleName) &&
 				!projectConfig.fields.some(field => packageJson[field]?.[moduleName])
 			) {
 				report({
-					message: `Missing dependency "${moduleName}" in ${path.relative(process.cwd(), packageJsonPath)} fields: ${projectConfig.fields.join(', ') || 'none'}}`,
+					message: `Missing dependency "${moduleName}" in ${path.relative(process.cwd(), packageJsonPath)} fields: ${(projectConfig.fields).join(', ') || 'none'}`,
 					range: {
-						start: document.positionAt(node.moduleSpecifier.getStart(sourceFile)),
-						end: document.positionAt(node.moduleSpecifier.getEnd()),
+						start: document.positionAt(1 + node.arguments[0].getStart(sourceFile)),
+						end: document.positionAt(1 + node.arguments[0].getStart(sourceFile) + moduleName.length),
 					},
 					severity: 1,
 				});
@@ -50,7 +70,7 @@ export default (ignores: Record<string, ProjectConfig> = {}): Rule<Provide> => (
 	},
 });
 
-function getImportModuleName(importText: string) {
+export function getImportModuleName(importText: string) {
 	if (importText.startsWith('.')) {
 		return undefined;
 	}
@@ -63,7 +83,7 @@ function getImportModuleName(importText: string) {
 
 const searchCache = new Map<string, string | undefined>();
 
-function searchPackageJson(dir: string) {
+export function searchPackageJson(dir: string) {
 	if (searchCache.has(dir)) {
 		return searchCache.get(dir);
 	}

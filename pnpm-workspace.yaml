@@ -1,3 +1,5 @@
 packages:
   - '*'
   - '*/packages/*'
+  - '*/extensions/*'
+  - '*/test-workspace'

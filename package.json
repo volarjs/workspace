@@ -1,9 +1,15 @@
 {
     "scripts": {
-        "clone:framework": "git clone https://github.com/volarjs/volar.js.git framework && cd framework && pnpm i && npm run build",
-        "clone:services": "git clone https://github.com/volarjs/services.git services && cd services && pnpm i && npm run build",
-        "clone:vue": "git clone https://github.com/vuejs/language-tools.git vue && cd vue && pnpm i && npm run build",
-        "setup:vue": "(npm run clone:framework & npm run clone:services & npm run clone:vue) && pnpm i",
+        "add:framework": "git clone https://github.com/volarjs/volar.js.git framework",
+        "add:services": "git clone https://github.com/volarjs/services.git services",
+        "add:vscode-typescript-web": "git clone https://github.com/volarjs/vscode-typescript-web.git vscode-typescript-web",
+        "add:monaco-volar": "git clone https://github.com/Kingwl/monaco-volar.git monaco-volar",
+        "add:vue": "git clone https://github.com/vuejs/language-tools.git vue",
+        "prepare:framework": "cd framework && pnpm i && npm run build",
+        "prepare:services": "cd services && pnpm i && npm run build",
+        "prepare:vue": "cd vue && pnpm i && npm run build",
+        "pnpm:devPreinstall": "(npm run prepare:framework & npm run prepare:services & npm run prepare:vue) && npm run clean:node_modules",
+        "setup:vue": "(npm run add:framework & npm run add:services & npm run add:vue) && pnpm i",
         "clean": "npm run clean:node_modules && npm run clean:tsbuildinfo",
         "clean:node_modules": "find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +",
         "clean:tsbuildinfo": "find . -name '*.tsbuildinfo' -type f -prune -exec rm -rf '{}' +",
@@ -13,31 +19,5 @@
     },
     "devDependencies": {
         "typescript": "latest"
-    },
-    "pnpm": {
-        "overrides": {
-            "@volar/kit": "file:./framework/packages/kit",
-            "@volar/language-core": "file:./framework/packages/language-core",
-            "@volar/language-server": "file:./framework/packages/language-server",
-            "@volar/language-service": "file:./framework/packages/language-service",
-            "@volar/source-map": "file:./framework/packages/source-map",
-            "@volar/typescript": "file:./framework/packages/typescript",
-            "@volar/vscode": "file:./framework/packages/vscode",
-            "volar-service-css": "file:./services/packages/css",
-            "volar-service-emmet": "file:./services/packages/emmet",
-            "volar-service-eslint": "file:./services/packages/eslint",
-            "volar-service-html": "file:./services/packages/html",
-            "volar-service-json": "file:./services/packages/json",
-            "volar-service-prettier": "file:./services/packages/prettier",
-            "volar-service-pretty-ts-errors": "file:./services/packages/pretty-ts-errors",
-            "volar-service-prettyhtml": "file:./services/packages/prettyhtml",
-            "volar-service-pug": "file:./services/packages/pug",
-            "volar-service-pug-beautify": "file:./services/packages/pug-beautify",
-            "volar-service-sass-formatter": "file:./services/packages/sass-formatter",
-            "volar-service-tslint": "file:./services/packages/tslint",
-            "volar-service-typescript": "file:./services/packages/typescript",
-            "volar-service-typescript-twoslash-queries": "file:./services/packages/typescript-twoslash-queries",
-            "volar-service-vetur": "file:./services/packages/vetur"
-        }
     }
 }

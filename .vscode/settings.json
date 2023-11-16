@@ -1,0 +1,9 @@
+{
+	"files.exclude": {
+		"framework": true,
+		"services": true,
+		"vue": true,
+		"astro": true,
+		"mdx": true,
+	}
+}

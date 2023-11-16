@@ -2,4 +2,4 @@ packages:
   - '*'
   - '*/packages/*'
   - '*/extensions/*'
-  - '*/test-workspace'
+  - 'vue/test-workspace'

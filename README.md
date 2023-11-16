@@ -1,8 +1,8 @@
-# Volar.js Workspace
+# Workspace
 
-Setup for vuejs/language-tools:
+Setup:
 
-1. Open Workspace from `vue.code-workspace` file
-2. Run `npm run setup:vue` to clone repos.
-3. Run `npm run watch` to watch and build volar and plugins
-4. Run `Launch Client (vue)` in VSCode Debug Panel
+1. Open Workspace from `volar.code-workspace` file
+2. Run `npm run setup` to clone repos
+3. Run `pnpm i` to install dependencies for all repos
+4. Run `npm run watch:*` and start code

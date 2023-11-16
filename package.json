@@ -15,9 +15,6 @@
         "watch:astro": "cd astro && npm run dev",
         "watch:mdx": "cd mdx && npm run test-types -- -w"
     },
-    "devDependencies": {
-        "typescript": "latest"
-    },
     "pnpm": {
         "overrides": {
             "@volar/cdn": "file:./framework/packages/cdn",

@@ -3,6 +3,7 @@
         "setup": "(npm run add:framework & npm run add:services & npm run add:vue & npm run add:astro && npm run add:mdx) && pnpm i",
         "add:framework": "git clone https://github.com/volarjs/volar.js.git framework",
         "add:services": "git clone https://github.com/volarjs/services.git services",
+        "add:starter": "git clone https://github.com/volarjs/starter.git starter",
         "add:vue": "git clone https://github.com/vuejs/language-tools.git vue",
         "add:astro": "git clone https://github.com/withastro/language-tools.git astro",
         "add:mdx": "git clone https://github.com/mdx-js/mdx-analyzer.git mdx",
@@ -11,6 +12,7 @@
         "clean:tsbuildinfo": "find . -name '*.tsbuildinfo' -type f -prune -exec rm -rf '{}' +",
         "watch:framework": "cd framework && npm run watch",
         "watch:services": "cd services && npm run watch",
+        "watch:starter": "cd starter && npm run watch",
         "watch:vue": "cd vue && npm run watch:base",
         "watch:astro": "cd astro && npm run dev",
         "watch:mdx": "cd mdx && npm run test-types -- -w"

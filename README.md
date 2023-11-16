@@ -11,6 +11,7 @@ Setup:
 
 - https://github.com/volarjs/volar.js
 - https://github.com/volarjs/services
+- https://github.com/volarjs/starter
 - https://github.com/vuejs/language-tools
 - https://github.com/withastro/language-tools
 - https://github.com/mdx-js/mdx-analyzer

@@ -1,6 +1,8 @@
 {
     "scripts": {
         "setup": "(npm run add:framework & npm run add:services & npm run add:vue & npm run add:astro && npm run add:mdx) && pnpm i",
+        "pnpm:devPreinstall": "npm run prepare:framework && npm run clean",
+        "prepare:framework": "cd framework && pnpm i && npm run build",
         "add:framework": "git clone https://github.com/volarjs/volar.js.git framework",
         "add:services": "git clone https://github.com/volarjs/services.git services",
         "add:starter": "git clone https://github.com/volarjs/starter.git starter",

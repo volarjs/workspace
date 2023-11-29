@@ -27,6 +27,7 @@
             "@volar/language-server": "file:./framework/packages/language-server",
             "@volar/language-service": "file:./framework/packages/language-service",
             "@volar/monaco": "file:./framework/packages/monaco",
+            "@volar/snapshot-document": "file:./framework/packages/snapshot-document",
             "@volar/source-map": "file:./framework/packages/source-map",
             "@volar/typescript": "file:./framework/packages/typescript",
             "@volar/vscode": "file:./framework/packages/vscode",

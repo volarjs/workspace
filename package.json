@@ -29,6 +29,7 @@
             "@volar/monaco": "file:./framework/packages/monaco",
             "@volar/snapshot-document": "file:./framework/packages/snapshot-document",
             "@volar/source-map": "file:./framework/packages/source-map",
+            "@volar/test-utils": "file:./framework/packages/test-utils",
             "@volar/typescript": "file:./framework/packages/typescript",
             "@volar/vscode": "file:./framework/packages/vscode",
             "volar-service-css": "file:./services/packages/css",
